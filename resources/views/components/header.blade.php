@@ -25,13 +25,13 @@
                 <a class="nav-link active" aria-current="page" href="{{ route('subcategory') }}">Sub Category</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Brand</a>
+                <a class="nav-link active" href="{{ route('brand') }}">Brand</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Size</a>
+                <a class="nav-link active" href="{{ route('size') }}">Size</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">Color</a>
+                <a class="nav-link active" href="{{ route('color') }}">Color</a>
               </li>
                <li class="nav-item">
                 <a class="nav-link active" href="#">Product</a>

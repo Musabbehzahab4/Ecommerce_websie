@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
@@ -31,7 +34,26 @@ Route::get('/subcategory/editsubcategory/{slug}',[SubcategoryController::class,'
 Route::post('/subcategory/updatesubcategory/{slug}',[SubcategoryController::class,'update']);
 Route::get('/subcategory/deletesubcategory/{slug}',[SubcategoryController::class,'delete'])->name('deletesubcateg');
 
+//===================================BrandController========================================//
+Route::get('/brand',[BrandController::class,'brand'])->name('brand');
+Route::get('/brand/brand-form',[BrandController::class,'brandform'])->name('brandform');
+Route::post('/brand/savebrand',[BrandController::class,'savebrand']);
+Route::get('/brand/editbrand/{id}',[BrandController::class,'edit'])->name('editbrand');
+Route::post('/brand/updatebrand/{id}',[BrandController::class,'update']);
+Route::get('/brand/deletebrand/{id}',[BrandController::class,'delete'])->name('deletebrand');
 
+//==================================SizeController========================================//
+Route::get('/size',[SizeController::class,'size'])->name('size');
+Route::get('/size/sizeform',[SizeController::class,'sizeform'])->name('sizeform');
+Route::post("/size/savesize",[SizeController::class,'savesize']);
+Route::get('/size/editsize/{id}',[SizeController::class,'edit'])->name('editsize');
+Route::post('/size/updatesize/{id}',[SizeController::class,'update']);
+Route::get('/size/deletesize/{id}',[SizeController::class,'delete'])->name('deletesize');
 
-
-
+//=================================ColorController======================================//
+Route::get('/color',[ColorController::class,'color'])->name('color');
+Route::get('/color/colorform',[ColorController::class,'colorform'])->name('colorform');
+Route::post('/color/savecolor',[ColorController::class,'savecolor']);
+Route::get('/color/editcolor/{id}',[ColorController::class,'edit'])->name('editcolor');
+Route::post('/color/updatecolor/{id}',[ColorController::class,'update']);
+Route::get('/color/deletecolor/{id}',[ColorController::class,'delete'])->name('deletecolor');
