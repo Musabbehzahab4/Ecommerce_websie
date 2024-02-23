@@ -1,25 +1,26 @@
 <x-header />
-
 <div class="container">
     <h1>Category</h1>
     <table>
         <thead>
             <tr>
                 <th>id</th>
+                <th>SubCategory Name</th>
                 <th>Category Name</th>
                 <th>Action</th>
 
             </tr>
         </thead>
         <tbody>
-            @foreach ($category as $value)
+            @foreach ($subcategory as $value)
 
             <tr>
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->title }}</td>
+                <td>{{ $value->category->title }}</td>
                 <td>
-                    <a href="{{ route('editcateg',['slug'=>$value->slug]) }}"class="btn btn-primary btn-sm">Edit</a>
-                    <a href="{{ route('deletecateg',['slug'=>$value->slug]) }}"class="btn btn-danger btn-sm">Delete</a>
+                    <a href="{{ route('editsubcateg',['slug'=>$value->slug]) }}"class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{{ route('deletesubcateg',['slug'=>$value->slug]) }}"class="btn btn-danger btn-sm">Delete</a>
                 </td>
 
             </tr>
@@ -28,7 +29,7 @@
         </tbody>
     </table>
     <button class="btn btn-primary" id="btn">
-        <a href="{{ route('category-form') }}">Add Category</a>
+        <a href="{{ route('subcategory-form') }}">ADD</a>
     </button>
 </div>
 </body>

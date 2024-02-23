@@ -44,7 +44,7 @@ body {
 .container {
 	position: absolute;
     margin-left: 64rem;
-    margin-top: 10rem;
+    margin-top: 12rem;
 	transform: translate(-50%, -50%);
 }
 
