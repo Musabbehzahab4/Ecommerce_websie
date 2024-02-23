@@ -34,7 +34,7 @@
                 <a class="nav-link active" href="{{ route('color') }}">Color</a>
               </li>
                <li class="nav-item">
-                <a class="nav-link active" href="#">Product</a>
+                <a class="nav-link active" href="{{ route('product') }}">Product</a>
               </li>
 
             </ul>

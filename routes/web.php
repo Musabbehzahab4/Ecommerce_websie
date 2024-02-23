@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -57,3 +58,7 @@ Route::post('/color/savecolor',[ColorController::class,'savecolor']);
 Route::get('/color/editcolor/{id}',[ColorController::class,'edit'])->name('editcolor');
 Route::post('/color/updatecolor/{id}',[ColorController::class,'update']);
 Route::get('/color/deletecolor/{id}',[ColorController::class,'delete'])->name('deletecolor');
+
+//=================================ProductController===================================//
+Route::get('/product',[ProductController::class,'product'])->name('product');
+Route::get('/product/productform',[ProductController::class,'productform'])->name('productform');
