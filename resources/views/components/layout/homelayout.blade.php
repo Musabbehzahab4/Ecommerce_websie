@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <x-admin.style />
 
-    <title>Document</title>
+    <title>Ecommerce</title>
     {{isset($CustomCSS)?$CustomCSS:''}}
 </head>
 <body style="background: linear-gradient(#141e30, #141e30);">

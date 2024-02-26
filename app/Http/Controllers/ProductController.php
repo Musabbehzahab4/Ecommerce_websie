@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product_color;
+use App\Models\Product_size;
 use App\Models\Size;
 use App\Models\Subcategory;
 use App\Models\Color;
@@ -39,13 +41,27 @@ class ProductController extends Controller
         $product->category_id = $request['category'];
         $product->subcategory_id = $request['subcategory'];
         $product->brand_id = $request['brand'];
-        $product->size_id = $request['size'];
-        $product->color = $request['color'];
+      
         $product->quantity = $request['quantity'];
         $product->price = $request['price'];
         $product->description = $request['description'];
         $product->image = $imageName;
         $product->save();
+
+        $product_size = new Product_size;
+        $size = $request['size'];
+        $product_id = $product->id;
+        $product_size->product_id= $product_id;
+        $product_size->size_id=$size;
+        $product_size->save();
+
+        $product_color = new Product_color;
+        $color = $request['color'];
+        $product_id = $product->id;
+        $product_color->product_id = $product_id;
+        $product_color->color_id = $color;
+        $product_color->save();
+
         return redirect('/product');
 
     }
