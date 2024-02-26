@@ -1,4 +1,5 @@
-<x-header />
+<x-layout.Homelayout>
+
 <div class="container">
     <h1>Category</h1>
     <table>
@@ -30,6 +31,4 @@
         <a href="{{ route('sizeform') }}">Add Size</a>
     </button>
 </div>
-</body>
-</html>
-
+</x-layout.Homelayout>

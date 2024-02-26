@@ -1,4 +1,7 @@
-<x-header />
+<x-layout.Homelayout>
+
+    @slot('CustomCSS')
+    @endslot
 <div class="container">
     <h1>Category</h1>
     <table>
@@ -32,5 +35,4 @@
         <a href="{{ route('subcategory-form') }}">ADD</a>
     </button>
 </div>
-</body>
-</html>
+</x-layout.Homelayout>

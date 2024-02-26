@@ -1,4 +1,4 @@
-<x-header />
+<x-layout.Homelayout>
 
 
 <div class="container"
@@ -45,7 +45,7 @@
 
         <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
             <label for="inputEmail4" class="form-label">Size</label>
-            <select class="form-select" name="size">
+            <select class="form-select" name="size" id="size">
                 <option selected>Select Size</option>
                 @foreach ($size as $value)
                     <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -95,6 +95,4 @@
         </div>
     </form>
 </div>
-</body>
-
-</html>
+</x-layout.Homelayout>

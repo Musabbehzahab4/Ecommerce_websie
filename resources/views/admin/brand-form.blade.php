@@ -1,4 +1,4 @@
-<x-header />
+<x-layout.Homelayout>
 
 <div class="login-box">
     <h2>{{ $title }}</h2>
@@ -18,5 +18,4 @@
     </form>
 </div>
 
-</body>
-</html>
+</x-layout.Homelayout>

@@ -1,4 +1,4 @@
-<x-header />
+<x-layout.Homelayout>
 
 <div class="container">
     <h1>Products</h1>
@@ -40,5 +40,4 @@
         <a href="{{ route('productform') }}">Add Product</a>
     </button>
 </div>
-</body>
-</html>
+</x-layout.Homelayout>
