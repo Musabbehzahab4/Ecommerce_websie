@@ -45,8 +45,8 @@
 
         <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
             <label for="inputEmail4" class="form-label">Size</label>
-            <select class="form-select" name="size" id="size">
-                <option selected>Select Size</option>
+            <select class="form-select" name="size[]"  multiple="multiple" id="size">
+                {{-- <option selected>Select Size</option> --}}
                 @foreach ($size as $value)
                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                 @endforeach
@@ -56,8 +56,8 @@
 
         <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
             <label for="inputEmail4" class="form-label">Color</label>
-            <select class="form-select" name="color">
-                <option selected>Select Color</option>
+            <select class="form-select" name="color[]" multiple="multiple" id="color">
+                {{-- <option selected>Select Color</option> --}}
                 @foreach ($color as $value)
                     <option value="{{ $value->id }}">{{ $value->name }}</option>
                 @endforeach
@@ -95,4 +95,14 @@
         </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $('#size').select2();
+});
+$(document).ready(function() {
+    $('#color').select2();
+});
+</script>
 </x-layout.Homelayout>

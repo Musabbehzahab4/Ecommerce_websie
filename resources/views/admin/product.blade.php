@@ -21,18 +21,28 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($category as $value) --}}
+            @foreach ($product as $value)
 
             <tr>
-                {{-- <td>{{ $value->id }}</td>
-                <td>{{ $value->title }}</td>
+                <td>{{ $value->id }}</td>
+                <td>{{ $value->name }}</td>
+                <td>{{ $value->Category->title }}</td>
+                <td>{{ $value->Subcategory->title }}</td>
+                <td>{{ $value->Brand->name }}</td>
+                <td></td>
+                <td></td>
+                <td>{{ $value->quantity }}</td>
+                <td>{{ $value->price }}</td>
+                <td>{{ $value->description }}</td>
+                <td>{{ $value->image }}</td>
+
                 <td>
-                    <a href="{{ route('editcateg',['slug'=>$value->slug]) }}"class="btn btn-primary btn-sm">Edit</a>
-                    <a href="{{ route('deletecateg',['slug'=>$value->slug]) }}"class="btn btn-danger btn-sm">Delete</a> --}}
+                    <a href=""class="btn btn-primary btn-sm">Edit</a>
+                    <a href=""class="btn btn-danger btn-sm">Delete</a>
                 </td>
 
             </tr>
-            {{-- @endforeach --}}
+            @endforeach
 
         </tbody>
     </table>

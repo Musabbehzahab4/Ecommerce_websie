@@ -17,7 +17,8 @@ class ProductController extends Controller
 {
     public function product()
     {
-        return view('admin.product');
+        $product = Product::with('category','subcategory','brand')->get();
+        return view('admin.product',compact('product'));
     }
     public function productform()
     {
@@ -28,7 +29,7 @@ class ProductController extends Controller
         $color = Color::all();
         $title = "Add Product";
         $url = '/product/saveproduct';
-        return view('admin.product-form',compact('title','url','category','subcategory','brand','size','color'));
+        return view('admin.product-form', compact('title', 'url', 'category', 'subcategory', 'brand', 'size', 'color'));
     }
     public function saveproduct(Request $request)
     {
@@ -41,26 +42,32 @@ class ProductController extends Controller
         $product->category_id = $request['category'];
         $product->subcategory_id = $request['subcategory'];
         $product->brand_id = $request['brand'];
-      
+
         $product->quantity = $request['quantity'];
         $product->price = $request['price'];
         $product->description = $request['description'];
         $product->image = $imageName;
         $product->save();
 
-        $product_size = new Product_size;
+
         $size = $request['size'];
         $product_id = $product->id;
-        $product_size->product_id= $product_id;
-        $product_size->size_id=$size;
-        $product_size->save();
+        foreach ($size as $size) {
+            $new_size = new Product_size;
+            $new_size->size_id = $size;
+            $new_size->product_id = $product_id;
+            $new_size->save();
+        }
 
-        $product_color = new Product_color;
+        // $product_color = new Product_color;
         $color = $request['color'];
         $product_id = $product->id;
-        $product_color->product_id = $product_id;
-        $product_color->color_id = $color;
-        $product_color->save();
+        foreach ($color as $color) {
+            $new_color = new Product_color;
+            $new_color->color_id = $color;
+            $new_color->product_id = $product_id;
+            $new_color->save();
+        }
 
         return redirect('/product');
 
