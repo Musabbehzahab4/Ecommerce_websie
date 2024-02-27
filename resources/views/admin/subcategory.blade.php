@@ -3,7 +3,7 @@
     @slot('CustomCSS')
     @endslot
 <div class="container">
-    <h1>Category</h1>
+    <h1>Sub Category</h1>
     <table>
         <thead>
             <tr>

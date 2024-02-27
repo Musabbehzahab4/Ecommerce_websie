@@ -8,13 +8,13 @@
 }
 
 h1 {
-    margin-left: 20rem;
+    margin-left: 28rem;
     color: white;
 
 }
 
 #btn {
-    margin-left: 37rem;
+    margin-left: 48rem;
     margin-top: 15px;
     width: 191px;
     height: 50px;
@@ -43,12 +43,13 @@ body {
 
 .container {
 	position: absolute;
-    margin-left: 64rem;
+    margin-left: 53rem;
     margin-top: 12rem;
 	transform: translate(-50%, -50%);
 }
 
 table {
+    margin-left: 10rem;
 	width: 800px;
 	border-collapse: collapse;
 	overflow: hidden;

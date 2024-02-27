@@ -17,4 +17,7 @@
 
 </body>
 <x-admin.script />
+{{ isset($CustomJS)?$CustomJS:'' }}
+{{-- {{ isset($Ajax)?$Ajax:'' }} --}}
+
 </html>

@@ -1,7 +1,7 @@
 <x-layout.Homelayout>
 
 <div class="container">
-    <h1>Category</h1>
+    <h1>Size</h1>
     <table>
         <thead>
             <tr>

@@ -2,7 +2,7 @@
 
 <div class="container">
     <h1>Products</h1>
-    <table style="width: 100%; margin-left: -13rem;">
+    <table style="width: 100%; margin-left: -6rem;">
         <thead>
             <tr>
                 <th>id</th>

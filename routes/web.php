@@ -63,3 +63,9 @@ Route::get('/color/deletecolor/{id}',[ColorController::class,'delete'])->name('d
 Route::get('/product',[ProductController::class,'product'])->name('product');
 Route::get('/product/productform',[ProductController::class,'productform'])->name('productform');
 Route::post('/product/saveproduct',[ProductController::class,'saveproduct']);
+
+
+
+//===============================AjaxCall=========================================//
+Route::get('/ajaxcall', [ProductController::class, 'ajaxCall'])->name('ajax-call');
+

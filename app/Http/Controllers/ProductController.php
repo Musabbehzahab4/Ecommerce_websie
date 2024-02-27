@@ -59,7 +59,6 @@ class ProductController extends Controller
             $new_size->save();
         }
 
-        // $product_color = new Product_color;
         $color = $request['color'];
         $product_id = $product->id;
         foreach ($color as $color) {
@@ -70,6 +69,15 @@ class ProductController extends Controller
         }
 
         return redirect('/product');
+
+    }
+
+    public function ajaxCall(Request $request){
+        $category = Subcategory::with('category')
+            ->where('category_id', $request->category)
+            ->get();
+            return $category;
+            // return response()->json(['success' => true,'data'=>$category]);
 
     }
 
