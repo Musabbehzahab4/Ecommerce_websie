@@ -17,11 +17,13 @@ class ProductController extends Controller
 {
     public function product()
     {
-        $product = Product::with('category','subcategory','brand')->get();
-        return view('admin.product',compact('product'));
+        $product = Product::with('category', 'subcategory', 'brand', 'colors')->get();
+
+        return view('admin.product', compact('product'));
     }
     public function productform()
     {
+
         $category = Category::all();
         $subcategory = Subcategory::all();
         $brand = Brand::all();
@@ -29,6 +31,7 @@ class ProductController extends Controller
         $color = Color::all();
         $title = "Add Product";
         $url = '/product/saveproduct';
+
         return view('admin.product-form', compact('title', 'url', 'category', 'subcategory', 'brand', 'size', 'color'));
     }
     public function saveproduct(Request $request)
@@ -71,13 +74,71 @@ class ProductController extends Controller
         return redirect('/product');
 
     }
+    public function edit($id)
+    {
+        $category = Category::all();
+        $subcategory = Subcategory::all();
+        $brand = Brand::all();
+        $size = Size::all();
+        $color = Color::all();
+        $product_color = Product_color::where('product_id', $id)->get();
+        $product_size = Product_size::where('product_id', $id)->get();
 
-    public function ajaxCall(Request $request){
+        $product = Product::where('id', $id)->first();
+        $page = 'edit';
+        if (is_null($product)) {
+            return redirect()->back();
+        } else {
+            $title = 'Update Product';
+            $url = '/product/updateproduct' . '/' . $id;
+            return view('admin.product-form', compact('page', 'product', 'title', 'url', 'category', 'subcategory', 'brand', 'size', 'color', 'product_color', 'product_size'));
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $product = Product::where('id', $id)->first();
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('students'), $imageName);
+
+        $product->name = $request['name'];
+        $product->slug = Str::slug($request->name);
+        $product->category_id = $request['category'];
+        $product->subcategory_id = $request['subcategory'];
+        $product->brand_id = $request['brand'];
+
+        $product->quantity = $request['quantity'];
+        $product->price = $request['price'];
+        $product->description = $request['description'];
+        $product->image = $imageName;
+        $product->save();
+        return redirect('/product');
+    }
+
+    public function delete($id)
+    {
+        $product = Product::where('id', $id)->first();
+        if (!is_null($product)) {
+            $product->delete();
+            return redirect('/product');
+        } else {
+            return redirect('/product');
+        }
+    }
+
+
+
+
+
+
+    public function ajaxCall(Request $request)
+    {
         $category = Subcategory::with('category')
             ->where('category_id', $request->category)
             ->get();
-            return $category;
-            // return response()->json(['success' => true,'data'=>$category]);
+        return response()->json(['success' => true, 'data' => $category]);
 
     }
 

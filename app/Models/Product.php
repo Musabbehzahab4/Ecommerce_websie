@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Brand;
+use App\Models\Product_color;
+use App\Models\Product_size;
+use App\Models\Color;
 
 class Product extends Model
 {
@@ -26,6 +29,14 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class,'brand_id');
 
+    }
+    public function colors()
+    {
+        return $this->hasMany(Product_color::class,'product_id');
+    }
+    public function productsize()
+    {
+        return $this->hasMany(Product_size::class,'product_id');
     }
 
 }

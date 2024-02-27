@@ -1,3 +1,8 @@
+{{-- @php
+echo '<pre>';
+print_r($color);die;
+@endphp --}}
+
 <x-layout.Homelayout>
 
 
@@ -8,14 +13,16 @@
             @csrf
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" id="inputEmail4">
+                <input type="text" name="name" class="form-control" id="inputEmail4"
+                    value="{{ @$product->name }}">
             </div>
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category">
                     <option selected>Select Category</option>
                     @foreach ($category as $value)
-                        <option value="{{ $value->id }}">{{ $value->title }}</option>
+                        <option value="{{ $value->id }}"@if ($value->id == @$product->category_id) selected @endif>
+                            {{ @$value->title }}</option>
                     @endforeach
                 </select>
             </div>
@@ -24,10 +31,15 @@
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">SubCategory</label>
                 <select class="form-select" name="subcategory" id="subcategory">
-                    {{-- <option selected>Select SubCategory</option>
-                @foreach ($subcategory as $value)
-                    <option value="{{ $value->id }}">{{ $value->title }}</option>
-                @endforeach --}}
+                    @if (isset($page))
+
+                        <option selected>Select SubCategory</option>
+                        @foreach ($subcategory as $value)
+                            <option value="{{ $value->id }}" @if ($value->id == @$product->subcategory_id) selected @endif>
+                                {{ $value->title }}</option>
+                        @endforeach
+                    @endif
+
                 </select>
             </div>
 
@@ -37,55 +49,71 @@
                 <select class="form-select" name="brand">
                     <option selected>Select Brand</option>
                     @foreach ($brand as $value)
-                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                        <option value="{{ $value->id }}"@if ($value->id == @$product->brand_id) selected @endif>
+                            {{ $value->name }}</option>
                     @endforeach
                 </select>
             </div>
 
 
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
-                <label for="inputEmail4" class="form-label">Size</label>
+                <label for="size" class="form-label">Size</label>
                 <select class="form-select" name="size[]" multiple="multiple" id="size">
-                    
                     @foreach ($size as $value)
-                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                        <option value="{{ $value->id }}"
+                            @if (isset($product_size))
+                                @foreach ($product_size as $ps)
+                                    @if ($value->id == $ps->size_id) selected @endif
+                                @endforeach
+                            @endif>
+                            {{ $value->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
 
 
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
-                <label for="inputEmail4" class="form-label">Color</label>
+                <label for="color" class="form-label">Color</label>
                 <select class="form-select" name="color[]" multiple="multiple" id="color">
-
                     @foreach ($color as $value)
-                        <option value="{{ $value->id }}">{{ $value->name }}</option>
+                        <option value="{{ $value->id }}"
+                            @if (isset($product_color))
+                                @foreach ($product_color as $pc)
+                                    @if ($value->id == $pc->color_id) selected @endif
+                                @endforeach
+                            @endif>
+                            {{ $value->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
+
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Quantity</label>
-                <input type="number" name="quantity" class="form-control" id="inputEmail4">
+                <input type="number" name="quantity" class="form-control" id="inputEmail4"
+                    value="{{ @$product->quantity }}">
             </div>
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Price</label>
-                <input type="number" name="price" class="form-control" id="inputEmail4">
+                <input type="number" name="price" class="form-control" id="inputEmail4"
+                    value="{{ @$product->price }}">
             </div>
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Image</label>
-                <input type="file" name="image" class="form-control" id="inputEmail4">
+                <input type="file" name="image" class="form-control" id="inputEmail4" value="{{ @$product->image }}">
             </div>
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ @$product->description }}</textarea>
             </div>
 
             <div class="col-12">
@@ -108,33 +136,32 @@
         </script>
     @endslot
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
 
 
-                $('#category').on('change', function() {
-                    var idcategory = this.value;
+            $('#category').on('change', function() {
+                var idcategory = this.value;
 
-                    $("#subcategory").html('');
-                    $.ajax({
-                        url: "{{ url('/ajaxcall') }}",
-                        type: "get",
-                        data: {
-                            category: idcategory,
-                            _token: '{{ csrf_token() }}'
-                        },
-                        dataType: 'json',
-                        success: function(result) {
-                            $('#subcategory').html('<option value="">Select subcategory</option>');
-                            console.log(result);
-                            $.each(result, function(key, value) {
-                                $("#subcategory").append('<option value="' + value
-                                    .id + '">' + value.title + '</option>');
-                            });
+                $("#subcategory").html('');
 
-                        }
-                    });
+                $.ajax({
+                    url: "{{ url('/ajaxcall') }}",
+                    type: "get",
+                    data: {
+                        category: idcategory,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#subcategory').html('<option value="">Select subcategory</option>');
+                        $.each(result.data, function(key, value) {
+                            $("#subcategory").append('<option value="' + value.id +
+                                '">' + value.title + '</option>');
+                        });
+                    }
                 });
-            })
-        </script>
+            });
+        })
+    </script>
 </x-layout.Homelayout>

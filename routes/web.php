@@ -63,6 +63,9 @@ Route::get('/color/deletecolor/{id}',[ColorController::class,'delete'])->name('d
 Route::get('/product',[ProductController::class,'product'])->name('product');
 Route::get('/product/productform',[ProductController::class,'productform'])->name('productform');
 Route::post('/product/saveproduct',[ProductController::class,'saveproduct']);
+Route::get('/product/editproduct/{id}',[ProductController::class,'edit'])->name('editproduct');
+Route::post('/product/updateproduct/{id}',[ProductController::class,'update']);
+Route::get('/product/deleteproduct/{id}',[ProductController::class,'delete'])->name('deleteproduct');
 
 
 
