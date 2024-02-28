@@ -1,8 +1,3 @@
-{{-- @php
-echo '<pre>';
-print_r($color);die;
-@endphp --}}
-
 <x-layout.Homelayout>
 
 

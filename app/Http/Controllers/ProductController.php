@@ -142,18 +142,16 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::where('id', $id)->first();
+
         if (!is_null($product)) {
             $product->delete();
+            Product_size::where('product_id',$id)->delete();
+            Product_color::where('product_id',$id)->delete();
             return redirect('/product');
         } else {
             return redirect('/product');
         }
     }
-
-
-
-
-
 
     public function ajaxCall(Request $request)
     {

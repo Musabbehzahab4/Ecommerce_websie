@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
@@ -66,9 +67,19 @@ Route::post('/product/saveproduct',[ProductController::class,'saveproduct']);
 Route::get('/product/editproduct/{id}',[ProductController::class,'edit'])->name('editproduct');
 Route::post('/product/updateproduct/{id}',[ProductController::class,'update']);
 Route::get('/product/deleteproduct/{id}',[ProductController::class,'delete'])->name('deleteproduct');
-
-
-
 //===============================AjaxCall=========================================//
 Route::get('/ajaxcall', [ProductController::class, 'ajaxCall'])->name('ajax-call');
+
+//=================================UserController===================================//
+Route::get('/index',[UserController::class,'index'])->name('index');
+Route::get('/about',[UserController::class,'about'])->name('about');
+Route::get('/blog',[UserController::class,'blog'])->name('blog');
+Route::get('/products',[UserController::class,'products'])->name('products');
+Route::get('/contact',[UserController::class,'contact'])->name('contact');
+Route::get('/testimonial',[UserController::class,'testimonial'])->name('testimonial');
+
+
+
+
+
 
