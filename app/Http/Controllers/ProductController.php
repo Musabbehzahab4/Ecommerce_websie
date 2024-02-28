@@ -114,6 +114,18 @@ class ProductController extends Controller
         $product->description = $request['description'];
         $product->image = $imageName;
         $product->save();
+
+        $sizes = $request['size'];
+        // return $sizes;die;
+        $product_id = $product->id;
+        foreach ($sizes as $size) {
+            $new_size = Product_size::where('product_id',$id)->first();
+            // return $new_size;die;
+            $new_size->size_id = $size;
+            $new_size->product_id = $product_id;
+            // return $new_size;die;
+            $new_size->save();
+        }
         return redirect('/product');
     }
 
