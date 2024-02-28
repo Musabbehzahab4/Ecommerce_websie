@@ -13,12 +13,12 @@ print_r($color);die;
             @csrf
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" id="inputEmail4"
+                <input type="text" name="name" class="form-control" id="inputEmail4" required
                     value="{{ @$product->name }}">
             </div>
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Category</label>
-                <select class="form-select" name="category" id="category">
+                <select class="form-select" name="category" id="category" required>
                     <option selected>Select Category</option>
                     @foreach ($category as $value)
                         <option value="{{ $value->id }}"@if ($value->id == @$product->category_id) selected @endif>
@@ -30,7 +30,7 @@ print_r($color);die;
 
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">SubCategory</label>
-                <select class="form-select" name="subcategory" id="subcategory">
+                <select class="form-select" name="subcategory" id="subcategory" required>
                     @if (isset($page))
 
                         <option selected>Select SubCategory</option>
@@ -46,7 +46,7 @@ print_r($color);die;
 
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Brand</label>
-                <select class="form-select" name="brand">
+                <select class="form-select" name="brand" required>
                     <option selected>Select Brand</option>
                     @foreach ($brand as $value)
                         <option value="{{ $value->id }}"@if ($value->id == @$product->brand_id) selected @endif>
@@ -58,16 +58,15 @@ print_r($color);die;
 
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="size" class="form-label">Size</label>
-                <select class="form-select" name="size[]" multiple="multiple" id="size">
+                <select class="form-select" name="size[]" multiple="multiple" id="size" required>
                     @foreach ($size as $value)
                         <option value="{{ $value->id }}"
-                            @if (isset($product_size))
-                                @foreach ($product_size as $ps)
+                            @if (isset($product_size)) @foreach ($product_size as $ps)
                                     @if ($value->id == $ps->size_id) selected @endif
-                                @endforeach
-                            @endif>
-                            {{ $value->name }}
-                        </option>
+                            @endforeach
+                    @endif>
+                    {{ $value->name }}
+                    </option>
                     @endforeach
                 </select>
             </div>
@@ -75,16 +74,15 @@ print_r($color);die;
 
             <div class="col-sm-3" style="width: 100%; margin-top: 20px;">
                 <label for="color" class="form-label">Color</label>
-                <select class="form-select" name="color[]" multiple="multiple" id="color">
+                <select class="form-select" name="color[]" multiple="multiple" id="color" required>
                     @foreach ($color as $value)
                         <option value="{{ $value->id }}"
-                            @if (isset($product_color))
-                                @foreach ($product_color as $pc)
+                            @if (isset($product_color)) @foreach ($product_color as $pc)
                                     @if ($value->id == $pc->color_id) selected @endif
-                                @endforeach
-                            @endif>
-                            {{ $value->name }}
-                        </option>
+                            @endforeach
+                    @endif>
+                    {{ $value->name }}
+                    </option>
                     @endforeach
                 </select>
             </div>
@@ -93,27 +91,28 @@ print_r($color);die;
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Quantity</label>
-                <input type="number" name="quantity" class="form-control" id="inputEmail4"
+                <input type="number" name="quantity" class="form-control" id="inputEmail4" required
                     value="{{ @$product->quantity }}">
             </div>
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Price</label>
-                <input type="number" name="price" class="form-control" id="inputEmail4"
+                <input type="number" name="price" class="form-control" id="inputEmail4" required
                     value="{{ @$product->price }}">
             </div>
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Image</label>
-                <input type="file" name="image" class="form-control" id="inputEmail4" value="{{ @$product->image }}">
+                <input type="file" name="image" class="form-control" id="inputEmail4"
+                    value="{{ @$product->image }}" required>
             </div>
 
 
             <div class="col-md-6" style="width: 100%; margin-top: 20px;">
                 <label for="inputEmail4" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ @$product->description }}</textarea>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required>{{ @$product->description }}</textarea>
             </div>
 
             <div class="col-12">

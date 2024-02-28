@@ -115,16 +115,26 @@ class ProductController extends Controller
         $product->image = $imageName;
         $product->save();
 
+
         $sizes = $request['size'];
-        // return $sizes;die;
         $product_id = $product->id;
+        $delete_size = Product_size::where('product_id', $id)->delete();
         foreach ($sizes as $size) {
-            $new_size = Product_size::where('product_id',$id)->first();
-            // return $new_size;die;
+            $new_size = new Product_size;
             $new_size->size_id = $size;
             $new_size->product_id = $product_id;
-            // return $new_size;die;
             $new_size->save();
+        }
+
+
+        $color = $request['color'];
+        $product_id = $product->id;
+        $delete_color = Product_color::where('product_id', $id)->delete();
+        foreach ($color as $color) {
+            $new_color = new Product_color;
+            $new_color->color_id = $color;
+            $new_color->product_id = $product_id;
+            $new_color->save();
         }
         return redirect('/product');
     }

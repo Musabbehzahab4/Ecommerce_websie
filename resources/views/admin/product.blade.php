@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             @foreach ($value->colors as $color)
-                                {{ $color->productcolor->name }}
+                                {{ $color->productcolor->name }},
                             @endforeach
                         </td>
                         <td>{{ $value->quantity }}</td>
