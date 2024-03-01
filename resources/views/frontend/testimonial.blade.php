@@ -1,5 +1,11 @@
-<x-user.header-user />
-     
+<x-layout.frontend>
+
+      <div class="hero_area">
+         <!-- header section strats -->
+         <x-frontend.navbar />
+
+         <!-- end header section -->
+      </div>
       <!-- inner page section -->
       <section class="inner_page_head">
          <div class="container_fuild">
@@ -28,7 +34,7 @@
                         <div class="img_container">
                            <div class="img-box">
                               <div class="img_box-inner">
-                                 <img src="{{ asset('images/client.jpg') }}" alt="">
+                                 <img src="{{ asset('assets/images/client.jpg') }}" alt="">
                               </div>
                            </div>
                         </div>
@@ -50,7 +56,7 @@
                         <div class="img_container">
                            <div class="img-box">
                               <div class="img_box-inner">
-                                 <img src="{{ asset('images/client.jpg') }}" alt="">
+                                 <img src="{{ asset('assets/images/client.jpg') }}" alt="">
                               </div>
                            </div>
                         </div>
@@ -72,7 +78,7 @@
                         <div class="img_container">
                            <div class="img-box">
                               <div class="img_box-inner">
-                                 <img src="{{ asset('images/client.jpg') }}" alt="">
+                                 <img src="{{ asset('assets/images/client.jpg') }}" alt="">
                               </div>
                            </div>
                         </div>
@@ -104,6 +110,7 @@
          </div>
       </section>
       <!-- end client section -->
-      <x-user.footer-user />
-   </body>
-</html>
+      <!-- footer section -->
+      <x-frontend.footer />
+      <x-frontend.script-user />
+    </x-layout.frontend>

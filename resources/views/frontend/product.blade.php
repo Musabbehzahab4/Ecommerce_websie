@@ -1,5 +1,11 @@
-<x-user.header-user />
-    
+<x-layout.frontend>
+
+      <div class="hero_area">
+         <!-- header section strats -->
+         <x-frontend.navbar />
+
+         <!-- end header section -->
+      </div>
       <!-- inner page section -->
       <section class="inner_page_head">
          <div class="container_fuild">
@@ -35,7 +41,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p1.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p1.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -60,7 +66,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p2.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p2.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -85,7 +91,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p3.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p3.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -110,7 +116,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p4.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p4.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -135,7 +141,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p5.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p5.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -160,7 +166,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p6.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p6.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -185,7 +191,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p7.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p7.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -210,7 +216,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p8.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p8.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -235,7 +241,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p9.png') }}" alt="">
+                        <img src="{{ asset('assets/images/p9.png') }}" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -260,7 +266,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p10.pn') }}g" alt="">
+                        <img src="{{ asset('assets/images/p10.pn') }}g" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -285,7 +291,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p11.pn') }}g" alt="">
+                        <img src="{{ asset('assets/images/p11.pn') }}g" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -310,7 +316,7 @@
                         </div>
                      </div>
                      <div class="img-box">
-                        <img src="{{ asset('images/p12.pn') }}g" alt="">
+                        <img src="{{ asset('assets/images/p12.pn') }}g" alt="">
                      </div>
                      <div class="detail-box">
                         <h5>
@@ -331,6 +337,8 @@
          </div>
       </section>
       <!-- end product section -->
-      <x-user.footer-user />
-   </body>
-</html>
+      <!-- footer section -->
+      <x-frontend.footer />
+      <x-frontend.script-user />
+    </x-layout.frontend>
+

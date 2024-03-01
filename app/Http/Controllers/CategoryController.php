@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $category->slug = Str::slug($request->name);
 
         $category->save();
-        return redirect('/');
+        return redirect('/category');
     }
     public function edit($slug)
     {
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $category->title = $request['name'];
         $category->slug = Str::slug($request->name);
         $category->save();
-        return redirect('/');
+        return redirect('/category');
 
     }
     public function delete($slug)
@@ -55,9 +55,9 @@ class CategoryController extends Controller
         $category = Category::where('slug',$slug)->first();
         if(!is_null($category)){
             $category->delete();
-            return redirect('/');
+            return redirect('/category');
         }else{
-            return redirect('/');
+            return redirect('/category');
         }
 
     }

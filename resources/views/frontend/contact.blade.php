@@ -1,4 +1,10 @@
-<x-user.header-user />
+<x-layout.frontend>
+
+      <div class="hero_area">
+         <!-- header section strats -->
+         <x-frontend.navbar />
+         <!-- end header section -->
+      </div>
       <!-- inner page section -->
       <section class="inner_page_head">
          <div class="container_fuild">
@@ -39,7 +45,7 @@
          <div class="container">
             <div class="box">
                <div class="arrival_bg_box">
-                  <img src="{{ asset('images/arrival-bg.png') }}" alt="">
+                  <img src="{{ asset('assets/images/arrival-bg.png') }}" alt="">
                </div>
                <div class="row">
                   <div class="col-md-6 ml-auto">
@@ -60,6 +66,7 @@
          </div>
       </section>
       <!-- end arrival section -->
-      <x-user.footer-user />
-   </body>
-</html>
+      <!-- footer section -->
+      <x-frontend.footer />
+      <x-frontend.script-user />
+    </x-layout.frontend>

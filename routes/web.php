@@ -4,10 +4,10 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ use App\Http\Controllers\SubcategoryController;
 */
 
 //=====================================CategoryController====================================//
-Route::get('/',[CategoryController::class,'category'])->name('category');
+Route::get('/category',[CategoryController::class,'category'])->name('category');
 Route::get('/category-form',[CategoryController::class,'categform'])->name('category-form');
 Route::post('/savecategory',[CategoryController::class,'savecategory'])->name('savecategory');
 Route::get('/editcategory/{slug}',[CategoryController::class,'edit'])->name('editcateg');
@@ -71,12 +71,12 @@ Route::get('/product/deleteproduct/{id}',[ProductController::class,'delete'])->n
 Route::get('/ajaxcall', [ProductController::class, 'ajaxCall'])->name('ajax-call');
 
 //=================================UserController===================================//
-Route::get('/index',[UserController::class,'index'])->name('index');
-Route::get('/about',[UserController::class,'about'])->name('about');
-Route::get('/blog',[UserController::class,'blog'])->name('blog');
-Route::get('/products',[UserController::class,'products'])->name('products');
-Route::get('/contact',[UserController::class,'contact'])->name('contact');
-Route::get('/testimonial',[UserController::class,'testimonial'])->name('testimonial');
+Route::get('/',[HomeController::class,'index'])->name('front');
+Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/blog',[HomeController::class,'blog'])->name('blog');
+Route::get('/products',[HomeController::class,'products'])->name('products');
+Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
 
 
 
