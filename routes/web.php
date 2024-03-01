@@ -77,6 +77,9 @@ Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/products',[HomeController::class,'products'])->name('products');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
+Route::get('/cartss',[HomeController::class,'cart'])->name('Cartss');
+Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
+Route::get('/thankyou',[HomeController::class,'thankyou'])->name('thankyou');
 
 
 

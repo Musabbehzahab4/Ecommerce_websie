@@ -389,7 +389,7 @@
                <div class="box">
                   <div class="option_container">
                      <div class="options">
-                        <a href="" class="option1">
+                        <a href="{{ route('Cartss') }}" class="option1">
                          Add To Cart
                         </a>
                         <a href="" class="option2">

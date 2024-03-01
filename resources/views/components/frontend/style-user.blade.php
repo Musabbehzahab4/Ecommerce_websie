@@ -17,3 +17,17 @@
   <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="{{ asset('cart/fonts/icomoon/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('cart/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('cart/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('cart/css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('cart/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('cart/css/owl.theme.default.min.css') }}">
+
+
+    <link rel="stylesheet" href="{{ asset('cart/css/aos.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('cart/css/style.css') }}">
