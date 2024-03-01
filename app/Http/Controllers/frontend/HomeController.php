@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $product = Product::get();
+        return view('frontend.index',compact('product'));
     }
     public function about()
     {
@@ -25,7 +27,8 @@ class HomeController extends Controller
     }
     public function products()
     {
-        return view('frontend.product');
+        $product = Product::get();
+        return view('frontend.product',compact('product'));
     }
     public function testimonial()
     {

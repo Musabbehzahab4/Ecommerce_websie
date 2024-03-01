@@ -70,14 +70,13 @@ Route::get('/product/deleteproduct/{id}',[ProductController::class,'delete'])->n
 //===============================AjaxCall=========================================//
 Route::get('/ajaxcall', [ProductController::class, 'ajaxCall'])->name('ajax-call');
 
-//=================================UserController===================================//
+//=================================Homeontroller===================================//
 Route::get('/',[HomeController::class,'index'])->name('front');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/products',[HomeController::class,'products'])->name('products');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
-
 
 
 
