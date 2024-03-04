@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
@@ -77,10 +78,14 @@ Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/products',[HomeController::class,'products'])->name('products');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
-Route::get('/cartss',[HomeController::class,'cart'])->name('Cartss');
 Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 Route::get('/thankyou',[HomeController::class,'thankyou'])->name('thankyou');
 
+//===============================CartController=====================================//
+Route::get('/cartss',[CartController::class,'cart'])->name('Cartss');
+Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addtocart');
+Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 
 
 

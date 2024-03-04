@@ -389,9 +389,13 @@
                <div class="box">
                   <div class="option_container">
                      <div class="options">
-                        <a href="{{ route('Cartss') }}" class="option1">
+                        {{-- <a href="{{ route('Cartss') }}" class="option1">
                          Add To Cart
-                        </a>
+                        </a> --}}
+                        <form action="{{ route('Cartss',$item->id) }}" method="POST">
+                            @csrf
+                            <input type="submit" value="Add To Cart">
+                        </form>
                         <a href="" class="option2">
                         Buy Now
                         </a>

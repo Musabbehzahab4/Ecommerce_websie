@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $product = Product::get();
-        return view('frontend.index',compact('product'));
+        return view('frontend.index', compact('product'));
     }
     public function about()
     {
@@ -28,17 +28,13 @@ class HomeController extends Controller
     public function products()
     {
         $product = Product::get();
-        return view('frontend.product',compact('product'));
+        return view('frontend.product', compact('product'));
     }
     public function testimonial()
     {
         return view('frontend.testimonial');
     }
-    public function cart()
-    {
-        $product = Product::get();
-        return view('frontend.cart',compact('product'));
-    }
+
     public function checkout()
     {
         return view('frontend.checkout');

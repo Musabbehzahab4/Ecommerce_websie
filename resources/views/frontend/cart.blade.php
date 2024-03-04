@@ -6,8 +6,8 @@
         <div class="bg-light py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 mb-0"><a href="{{ route('front') }}">Home</a> <span class="mx-2 mb-0">/</span> <strong
-                            class="text-black">Cart</strong></div>
+                    <div class="col-md-12 mb-0"><a href="{{ route('front') }}">Home</a> <span class="mx-2 mb-0">/</span>
+                        <strong class="text-black">Cart</strong></div>
                 </div>
             </div>
         </div>
@@ -29,63 +29,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <img src="{{ asset('cart/images/cloth_1.jpg') }}" alt="Image"
-                                                class="img-fluid">
-                                        </td>
-                                        <td class="product-name">
-                                            <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                                        </td>
-                                        <td>$49.00</td>
-                                        <td>
-                                            <div class="input-group mb-3" style="max-width: 120px;">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-primary js-btn-minus"
-                                                        type="button">&minus;</button>
-                                                </div>
-                                                <input type="text" class="form-control text-center" value="1"
-                                                    placeholder="" aria-label="Example text with button addon"
-                                                    aria-describedby="button-addon1">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary js-btn-plus"
-                                                        type="button">&plus;</button>
-                                                </div>
-                                            </div>
+                                    @php
+                                        $total = 0;
+                                    @endphp
+                                    @if (session('cart'))
+                                        @foreach (session('cart') as $id => $detail)
+                                            @php
+                                                $total += $detail['price'] * $detail['quantity'];
+                                            @endphp
+                                            <tr>
+                                                <td class="product-thumbnail">
+                                                    <img src="{{ asset('students/' . $detail['image']) }}"
+                                                        alt="Image" class="img-fluid">
+                                                </td>
+                                                <td class="product-name">
+                                                    <h2 class="h5 text-black">{{ $detail['name'] }}</h2>
+                                                </td>
+                                                <td>${{ $detail['price'] }}</td>
+                                                <td>
+                                                    <input type="number" value="{{ $detail['quantity'] }}"
+                                                        class="form-control quantity update-cart" />
 
-                                        </td>
-                                        <td>$49.00</td>
-                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+
+                                                </td>
+                                                <td>${{ $detail['price'] * $detail['quantity'] }}</td>
+                                                <td><a href="#"
+                                                        class="btn btn-primary height-auto btn-sm remove-from-cart">X</a>
+                                                </td>
+                                        @endforeach
+                                    @endif
                                     </tr>
 
-                                    <tr>
-                                        <td class="product-thumbnail">
-                                            <img src="{{ asset('cart/images/cloth_2.jpg') }}" alt="Image"
-                                                class="img-fluid">
-                                        </td>
-                                        <td class="product-name">
-                                            <h2 class="h5 text-black">Polo Shirt</h2>
-                                        </td>
-                                        <td>$49.00</td>
-                                        <td>
-                                            <div class="input-group mb-3" style="max-width: 120px;">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-primary js-btn-minus"
-                                                        type="button">&minus;</button>
-                                                </div>
-                                                <input type="text" class="form-control text-center" value="1"
-                                                    placeholder="" aria-label="Example text with button addon"
-                                                    aria-describedby="button-addon1">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary js-btn-plus"
-                                                        type="button">&plus;</button>
-                                                </div>
-                                            </div>
 
-                                        </td>
-                                        <td>$49.00</td>
-                                        <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -102,19 +77,6 @@
                                 <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="text-black h4" for="coupon">Coupon</label>
-                                <p>Enter your coupon code if you have one.</p>
-                            </div>
-                            <div class="col-md-8 mb-3 mb-md-0">
-                                <input type="text" class="form-control py-3" id="coupon"
-                                    placeholder="Coupon Code">
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary btn-sm px-4">Apply Coupon</button>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-md-6 pl-5">
                         <div class="row justify-content-end">
@@ -124,27 +86,20 @@
                                         <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <span class="text-black">Subtotal</span>
-                                    </div>
-                                    <div class="col-md-6 text-right">
-                                        <strong class="text-black">$230.00</strong>
-                                    </div>
-                                </div>
                                 <div class="row mb-5">
                                     <div class="col-md-6">
                                         <span class="text-black">Total</span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <strong class="text-black">$230.00</strong>
+                                        <strong class="text-black">${{ $total }}</strong>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <button class="btn btn-primary btn-lg btn-block"
-                                            onclick="window.location='{{ route('checkout') }}'">Proceed To Checkout</button>
+                                            onclick="window.location='{{ route('checkout') }}'">Proceed To
+                                            Checkout</button>
                                     </div>
                                 </div>
                             </div>
@@ -155,16 +110,56 @@
         </div>
     </div>
     <x-frontend.footer />
-<x-slot name="custom_js">
-    {{-- <script></script> --}}
-    <script src="{{ asset('cart/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('cart/js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('cart/js/popper.min.js') }}"></script>
-    <script src="{{ asset('cart/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('cart/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('cart/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('cart/js/aos.js') }}  "></script>
-    <script src="{{ asset('cart/js/main.js') }}"></script>
-</x-slot>
-</x-layout.frontend>
+    <x-frontend.script-user />
+    <script>
+        $(".update-cart").change(function(e) {
+            e.preventDefault();
 
+            var ele = $(this);
+
+            $.ajax({
+                url: '{{ route('update.cart') }}',
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: ele.parents("tr").attr("data-id"),
+                    quantity: ele.parents("tr").find(".quantity").val()
+                },
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".remove-from-cart").click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            if (confirm("Are you sure want to remove?")) {
+                $.ajax({
+                    url: '{{ route('remove.from.cart') }}',
+                    method: "DELETE",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: ele.parents("tr").attr("data-id")
+                    },
+                    success: function(response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+    <x-slot name="custom_js">
+        <script src="{{ asset('cart/js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('cart/js/jquery-ui.js') }}"></script>
+        <script src="{{ asset('cart/js/popper.min.js') }}"></script>
+        <script src="{{ asset('cart/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('cart/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('cart/js/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('cart/js/aos.js') }}  "></script>
+        <script src="{{ asset('cart/js/main.js') }}"></script>
+
+    </x-slot>
+</x-layout.frontend>
