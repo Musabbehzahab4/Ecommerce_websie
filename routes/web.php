@@ -82,10 +82,13 @@ Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 Route::get('/thankyou',[HomeController::class,'thankyou'])->name('thankyou');
 
 //===============================CartController=====================================//
-Route::get('/cartss',[CartController::class,'cart'])->name('Cartss');
-Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addtocart');
-Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
+// Route::get('/cartss',[CartController::class,'cart'])->name('Cartss');
+
+Route::get('/cartss', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('/addtocart', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('/removecar', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('/clearcart', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
 
 

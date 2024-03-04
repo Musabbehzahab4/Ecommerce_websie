@@ -34,12 +34,17 @@
                    <div class="box">
                       <div class="option_container">
                          <div class="options">
-                            {{-- <a href="{{ route('Cartss') }}" class="option1">
+                            {{-- <a href="{{ route('cart.list') }}" class="option1">
                              Add To Cart
                             </a> --}}
-                            <form action="{{ route('addtocart',$item->id) }}" method="post">
+                            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <input type="submit" value="Add To Cart">
+                                <input type="hidden" value="{{ $item->id }}" name="id">
+                                <input type="hidden" value="{{ $item->name }}" name="name">
+                                <input type="hidden" value="{{ $item->price }}" name="price">
+                                <input type="hidden" value="{{ $item->image }}"  name="image">
+                                <input type="hidden" value="1" name="quantity">
+                                <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
                             </form>
                             <a href="" class="option2">
                             Buy Now

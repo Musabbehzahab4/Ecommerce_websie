@@ -4,53 +4,73 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
+
 
 class CartController extends Controller
 {
-    public function cart()
+    // public function cart()
+    // {
+    //     // $product = Product::find($id);
+    //     return view('frontend.cart');
+    // }
+    public function cartList()
     {
-        return view('frontend.cart');
+        $cartItems = \Cart::getContent();
+        // dd($cartItems);
+        return view('frontend.cart', compact('cartItems'));
     }
-    public function addToCart($id)
+
+
+    public function addToCart(Request $request)
     {
-        $product = Product::find($id);
-        $cart = session()->get('cart', []);
+        \Cart::add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => array(
+                'image' => $request->image,
+            )
+        ]);
+        session()->flash('success', 'Product is Added to Cart Successfully !');
 
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "id" => $product->id,
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->image
-            ];
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-
+        return redirect()->back();
     }
-    public function update(Request $request)
+
+    public function updateCart(Request $request)
     {
-        if($request->id && $request->quantity){
-            $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
-        }
+        \Cart::update(
+            $request->id,
+            [
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $request->quantity
+                ],
+            ]
+        );
+        
+//    return $request;die;
+        session()->flash('success', 'Item Cart is Updated Successfully !');
+
+        return redirect()->route('cart.list');
     }
-    public function remove(Request $request)
+
+    public function removeCart(Request $request)
     {
-        if($request->id) {
-            $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
-                unset($cart[$request->id]);
-                session()->put('cart', $cart);
-            }
-            session()->flash('success', 'Product removed successfully');
-        }
+        \Cart::remove($request->id);
+        session()->flash('success', 'Item Cart Remove Successfully !');
+
+        return redirect()->route('cart.list');
+    }
+
+    public function clearAllCart()
+    {
+        \Cart::clear();
+
+        session()->flash('success', 'All Item Cart Clear Successfully !');
+
+        return redirect()->route('cart.list');
     }
 }
+
+
