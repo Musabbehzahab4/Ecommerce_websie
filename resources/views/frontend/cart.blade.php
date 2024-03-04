@@ -7,7 +7,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mb-0"><a href="{{ route('front') }}">Home</a> <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Cart</strong></div>
+                        <strong class="text-black">Cart</strong>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,8 +49,7 @@
                                                 <td>${{ $detail['price'] }}</td>
                                                 <td>
                                                     <input type="number" value="{{ $detail['quantity'] }}"
-                                                        class="form-control quantity update-cart" />
-
+                                                        class="form-control quantity" />
 
                                                 </td>
                                                 <td>${{ $detail['price'] * $detail['quantity'] }}</td>
@@ -59,8 +59,6 @@
                                         @endforeach
                                     @endif
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -71,12 +69,13 @@
                     <div class="col-md-6">
                         <div class="row mb-5">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
+                                <button class="btn btn-primary btn-sm btn-block  update-cart">Update Cart</button>
                             </div>
                             <div class="col-md-6">
                                 <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
                             </div>
                         </div>
+
                     </div>
                     <div class="col-md-6 pl-5">
                         <div class="row justify-content-end">
@@ -85,6 +84,8 @@
                                     <div class="col-md-12 text-right border-bottom mb-5">
                                         <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
                                     </div>
+                                </div>
+                                <div class="row mb-3">
                                 </div>
                                 <div class="row mb-5">
                                     <div class="col-md-6">
@@ -112,13 +113,13 @@
     <x-frontend.footer />
     <x-frontend.script-user />
     <script>
-        $(".update-cart").change(function(e) {
+        $(".update-cart").click(function(e) {
             e.preventDefault();
-
             var ele = $(this);
-
+            // console.log(ele);
+            // die;
             $.ajax({
-                url: '{{ route('update.cart') }}',
+                url: "{{ route('update.cart') }}",
                 method: "patch",
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -131,24 +132,25 @@
             });
         });
 
+
         $(".remove-from-cart").click(function(e) {
             e.preventDefault();
-
             var ele = $(this);
-
             if (confirm("Are you sure want to remove?")) {
                 $.ajax({
-                    url: '{{ route('remove.from.cart') }}',
+                    url: "{{ route('remove.from.cart') }}",
                     method: "DELETE",
                     data: {
                         _token: '{{ csrf_token() }}',
                         id: ele.parents("tr").attr("data-id")
                     },
+
                     success: function(response) {
                         window.location.reload();
                     }
                 });
             }
+
         });
     </script>
     <x-slot name="custom_js">
@@ -160,6 +162,5 @@
         <script src="{{ asset('cart/js/jquery.magnific-popup.min.js') }}"></script>
         <script src="{{ asset('cart/js/aos.js') }}  "></script>
         <script src="{{ asset('cart/js/main.js') }}"></script>
-
     </x-slot>
 </x-layout.frontend>

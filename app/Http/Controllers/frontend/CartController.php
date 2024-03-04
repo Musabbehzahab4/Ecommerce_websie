@@ -10,13 +10,11 @@ class CartController extends Controller
 {
     public function cart()
     {
-        // $product = Product::find($id);
         return view('frontend.cart');
     }
     public function addToCart($id)
     {
         $product = Product::find($id);
-        // return $product;die;
         $cart = session()->get('cart', []);
 
         if(isset($cart[$id])) {

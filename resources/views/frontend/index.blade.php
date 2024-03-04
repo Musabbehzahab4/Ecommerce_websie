@@ -392,7 +392,7 @@
                         {{-- <a href="{{ route('Cartss') }}" class="option1">
                          Add To Cart
                         </a> --}}
-                        <form action="{{ route('Cartss',$item->id) }}" method="POST">
+                        <form action="{{ route('addtocart',$item->id) }}" method="post">
                             @csrf
                             <input type="submit" value="Add To Cart">
                         </form>
