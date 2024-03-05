@@ -82,9 +82,7 @@ Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 Route::get('/thankyou',[HomeController::class,'thankyou'])->name('thankyou');
 
 //===============================CartController=====================================//
-// Route::get('/cartss',[CartController::class,'cart'])->name('Cartss');
-
-Route::get('/cartss', [CartController::class, 'cartList'])->name('cart.list');
+Route::match(['get', 'post'], '/Carts', [CartController::class, 'cartList'])->name('cart.list');
 Route::post('/addtocart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/removecar', [CartController::class, 'removeCart'])->name('cart.remove');

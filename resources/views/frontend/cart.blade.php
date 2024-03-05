@@ -33,7 +33,7 @@
 
                                     <tr>
                                         <td class="product-thumbnail">
-                                            <img src="{{ asset('students/'  . $item->attributes->image) }}" alt="Image"
+                                            <img src="{{ asset('students/'. $item->attributes->image) }}" alt="Image"
                                                 class="img-fluid">
                                         </td>
                                         <td class="product-name">
@@ -53,7 +53,7 @@
                                             </div>
 
                                         </td>
-                                        <td>$49.00</td>
+                                        <td>${{ $item->price * $item->quantity }}</td>
                                         <td>
                                             <form action="{{ route('cart.remove') }}" method="POST">
                                                 @csrf
@@ -72,9 +72,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row mb-5">
-                            <div class="col-md-6 mb-3 mb-md-0">
-                                <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
-                            </div>
                             <div class="col-md-6">
                                 <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
                             </div>

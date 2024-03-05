@@ -48,7 +48,7 @@ class CartController extends Controller
                 ],
             ]
         );
-        
+
 //    return $request;die;
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
