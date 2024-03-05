@@ -39,7 +39,7 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        return $request->all();die;
+
         \Cart::update(
             $request->id,
             [
@@ -58,7 +58,7 @@ class CartController extends Controller
 
     public function removeCart(Request $request)
     {
-        return $request->all();die;
+    
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
 

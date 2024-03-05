@@ -15,7 +15,7 @@
         <div class="site-section">
             <div class="container">
                 <div class="row mb-5">
-                    <form class="col-md-12" method="post">
+                    <div class="col-md-12" >
                         <div class="site-blocks-table">
                             <table class="table table-bordered">
                                 <thead>
@@ -40,8 +40,8 @@
                                             </td>
                                             <td>${{ $item->price }}</td>
                                             <td>
-                                                {{-- <div class="input-group mb-3" style="max-width: 120px;"> --}}
-                                                    <form action="{{ route('cart.update') }}" method="POST" id='{{$key}}'>
+                                                <div class="input-group mb-3" style="max-width: 120px;">
+                                                    <form action="{{ route('cart.update') }}" method="POST" id='{{$key+1}}'>
                                                         @csrf
                                                         <input type="hidden" value="{{ $item->id }}" name="id">
                                                         <input type="number" name="quantity"
@@ -50,9 +50,9 @@
                                                         <button type="submit"
                                                             class="px-2 pb-2 ml-2 text-white bg-blue-500"
                                                             style="border-radius: 7px;
-                                                  background-color: #ee4266; border-color: #ee4266;">update</button>
+                                                  background-color: #ee4266; border-color: #ee4266;">Update</button>
                                                     </form>
-                                                {{-- </div> --}}
+                                                </div>
 
                                             </td>
                                             <td>${{ $item->price * $item->quantity }}</td>
@@ -69,17 +69,17 @@
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="row mb-5">
-                            {{-- <div class="col-md-6 mb-3 mb-md-0">
-                                <a href="{{ route('cart.update') }}">
-                                <button type="submit" class="btn btn-primary btn-sm btn-block">Update Cart</button>
-                            </a>
-                            </div> --}}
+                                {{-- <div class="col-md-6 mb-3 mb-md-0">
+                                    <a href="{{ route('cart.update') }}">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block">Update Cart</button>
+                                </a>
+                                </div> --}}
                             <div class="col-md-6">
                                 <a href="{{ route('products') }}">
                                 <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>

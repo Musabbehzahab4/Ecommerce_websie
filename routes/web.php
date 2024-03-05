@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authss\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\frontend\CartController;
@@ -88,6 +89,9 @@ Route::match(['get','post'], '/update-cart', [CartController::class, 'updateCart
 Route::post('/removecar', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('/clearcart', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
-
-
+//===========================AuthController=========================================//
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/registerrr',[AuthController::class,'register'])->name('register');
+Route::post('/loginuser',[AuthController::class,'loginuser'])->name('loginuser');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
