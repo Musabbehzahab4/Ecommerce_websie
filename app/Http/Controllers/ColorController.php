@@ -10,11 +10,15 @@ class ColorController extends Controller
 {
     public function color()
     {
-        if (Auth::User()->user_type == 0) {
-            $color = Color::all();
-            return view('admin.color',compact('color'));
-        }else {
-            return redirect('/');
+        if (Auth::check()) {
+            if (Auth::User()->user_type == 0) {
+                $color = Color::all();
+                return view('admin.color',compact('color'));
+            }else {
+                return redirect('/');
+            }
+        }else{
+            return redirect('/login');
         }
     }
     public function colorform()

@@ -11,12 +11,17 @@ class CategoryController extends Controller
 {
     public function category()
     {
-        if (Auth::User()->user_type == 0) {
-            $category = Category::get();
-            return view('admin.category', compact('category'));
-        }else{
-            return redirect('/');
+        if (Auth::check()) {
+            if (Auth::User()->user_type == 0) {
+                $category = Category::get();
+                return view('admin.category', compact('category'));
+            } else {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/login'); // Redirect to login page if the user is not authenticated
         }
+
     }
 
     public function categform()

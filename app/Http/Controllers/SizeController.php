@@ -10,12 +10,18 @@ use App\Models\Size;
 class SizeController extends Controller
 {
 public function size()
-{if (Auth::User()->user_type == 0) {
-    $size = Size::all();
-    return view('admin.size',compact('size'));
-}else{
-    return redirect('/');
-}
+
+{
+    if (Auth::check()) {
+        if (Auth::User()->user_type == 0) {
+        $size = Size::all();
+        return view('admin.size',compact('size'));
+    }else{
+        return redirect('/');
+    }
+    }else{
+        return redirect('/login');
+    }
 }
 public function sizeform()
 {

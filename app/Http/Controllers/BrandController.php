@@ -9,11 +9,15 @@ class BrandController extends Controller
 {
    public function brand()
    {
-    if(Auth::User()->user_type == 0){
-        $brand = Brand::all();
-        return view('admin.brand',compact('brand'));
-    }else {
-        return redirect('/');
+    if (Auth::check()) {
+        if(Auth::User()->user_type == 0){
+            $brand = Brand::all();
+            return view('admin.brand',compact('brand'));
+        }else {
+            return redirect('/');
+        }
+    }else{
+        return redirect('/login');
     }
    }
    public function brandform()

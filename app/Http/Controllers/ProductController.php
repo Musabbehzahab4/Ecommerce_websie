@@ -18,11 +18,15 @@ class ProductController extends Controller
 {
     public function product()
     {
-        if (Auth::User()->user_type == 0) {
-            $product = Product::with('category', 'subcategory', 'brand', 'colors')->get();
-            return view('admin.product', compact('product'));
+        if(Auth::check()){
+            if (Auth::User()->user_type == 0) {
+                $product = Product::with('category', 'subcategory', 'brand', 'colors')->get();
+                return view('admin.product', compact('product'));
+            }else {
+                return redirect('/');
+            }
         }else {
-            return redirect('/');
+            return redirect('/login');
         }
     }
     public function productform()

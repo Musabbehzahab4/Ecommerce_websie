@@ -12,11 +12,15 @@ class SubcategoryController extends Controller
 {
    public function subcategory()
    {
-    if (Auth::User()->user_type == 0) {
-        $subcategory = Subcategory::with('category')->get();
-        return view('admin.subcategory',compact('subcategory'));
-    }else {
-        return redirect('/');
+    if(Auth::check()){
+        if (Auth::User()->user_type == 0) {
+            $subcategory = Subcategory::with('category')->get();
+            return view('admin.subcategory',compact('subcategory'));
+        }else {
+            return redirect('/');
+        }
+    }else{
+        return redirect('/login');
     }
    }
    public function subcategform()
