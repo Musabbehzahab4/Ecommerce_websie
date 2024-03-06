@@ -11,8 +11,12 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('authss.login');
-    }
+        if(Auth::check()){
+            return redirect('/');
+        }else{
+            return view('authss.login');
+        }
+        }
     public function register(Request $request)
     {
         // return $request;die;

@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\Size;
 
 class SizeController extends Controller
 {
 public function size()
-{
+{if (Auth::User()->user_type == 0) {
     $size = Size::all();
     return view('admin.size',compact('size'));
+}else{
+    return redirect('/');
+}
 }
 public function sizeform()
 {

@@ -4,14 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Str;
+use Auth;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function category()
     {
-        $category = Category::get();
-        return view('admin.category', compact('category'));
+        if (Auth::User()->user_type == 0) {
+            $category = Category::get();
+            return view('admin.category', compact('category'));
+        }else{
+            return redirect('/');
+        }
     }
 
     public function categform()

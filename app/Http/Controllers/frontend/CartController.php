@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 
 
@@ -15,9 +16,13 @@ class CartController extends Controller
     // }
     public function cartList()
     {
-        $cartItems = \Cart::getContent();
-        // dd($cartItems);
-        return view('frontend.cart', compact('cartItems'));
+        if(Auth::check()){
+            $cartItems = \Cart::getContent();
+            // dd($cartItems);
+            return view('frontend.cart', compact('cartItems'));
+        }else{
+            return view('authss.login');
+        }
     }
 
 
@@ -58,7 +63,7 @@ class CartController extends Controller
 
     public function removeCart(Request $request)
     {
-    
+
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
 

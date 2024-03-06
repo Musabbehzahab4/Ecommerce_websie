@@ -11,15 +11,19 @@ use App\Models\Subcategory;
 use App\Models\Color;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Auth;
 use Str;
 
 class ProductController extends Controller
 {
     public function product()
     {
-        $product = Product::with('category', 'subcategory', 'brand', 'colors')->get();
-
-        return view('admin.product', compact('product'));
+        if (Auth::User()->user_type == 0) {
+            $product = Product::with('category', 'subcategory', 'brand', 'colors')->get();
+            return view('admin.product', compact('product'));
+        }else {
+            return redirect('/');
+        }
     }
     public function productform()
     {

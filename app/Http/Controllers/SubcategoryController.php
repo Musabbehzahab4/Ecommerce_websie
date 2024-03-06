@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subcategory;
 use App\Models\Category;
+use Auth;
 use Str;
 
 class SubcategoryController extends Controller
 {
    public function subcategory()
    {
-    $subcategory = Subcategory::with('category')->get();
-    return view('admin.subcategory',compact('subcategory'));
+    if (Auth::User()->user_type == 0) {
+        $subcategory = Subcategory::with('category')->get();
+        return view('admin.subcategory',compact('subcategory'));
+    }else {
+        return redirect('/');
+    }
    }
    public function subcategform()
     {

@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
+use Auth;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
 {
     public function color()
     {
-        $color = Color::all();
-        return view('admin.color',compact('color'));
+        if (Auth::User()->user_type == 0) {
+            $color = Color::all();
+            return view('admin.color',compact('color'));
+        }else {
+            return redirect('/');
+        }
     }
     public function colorform()
     {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -9,8 +9,12 @@ class BrandController extends Controller
 {
    public function brand()
    {
-    $brand = Brand::all();
-    return view('admin.brand',compact('brand'));
+    if(Auth::User()->user_type == 0){
+        $brand = Brand::all();
+        return view('admin.brand',compact('brand'));
+    }else {
+        return redirect('/');
+    }
    }
    public function brandform()
    {

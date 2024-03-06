@@ -1,6 +1,7 @@
 <x-layout.Homelayout>
 
     @slot('CustomCSS')
+
     @endslot
 <div class="container">
     <h1>Sub Category</h1>
