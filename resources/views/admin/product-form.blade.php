@@ -2,7 +2,7 @@
 
 
     <div class="container"
-        style="width: 50rem; background-color: #828989; margin-left: 51rem; margin-top: 38rem; border-radius: 10px;">
+        style="width: 50rem; background-color: #828989; margin-top: 2rem; border-radius: 10px;">
         <h2 style="text-align: center;font-size:3rem;">{{ $title }}</h2>
         <form action="{{ $url }}" method="post" enctype="multipart/form-data">
             @csrf

@@ -4,12 +4,14 @@ use App\Http\Controllers\authss\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +74,9 @@ Route::get('/product/deleteproduct/{id}',[ProductController::class,'delete'])->n
 //===============================AjaxCall=========================================//
 Route::get('/ajaxcall', [ProductController::class, 'ajaxCall'])->name('ajax-call');
 
+//=============================OrderController=====================================//
+Route::get('/order',[OrderController::class,'order'])->name('order');
+
 //=================================Homeontroller===================================//
 Route::get('/',[HomeController::class,'index'])->name('front');
 Route::get('/about',[HomeController::class,'about'])->name('about');
@@ -79,7 +84,6 @@ Route::get('/blog',[HomeController::class,'blog'])->name('blog');
 Route::get('/products',[HomeController::class,'products'])->name('products');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/testimonial',[HomeController::class,'testimonial'])->name('testimonial');
-Route::get('/checkout',[HomeController::class,'checkout'])->name('checkout');
 Route::get('/thankyou',[HomeController::class,'thankyou'])->name('thankyou');
 
 //===============================CartController=====================================//
@@ -95,3 +99,8 @@ Route::post('/registerrr',[AuthController::class,'register'])->name('register');
 Route::post('/loginuser',[AuthController::class,'loginuser'])->name('loginuser');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
+//============================CheckoutController=====================================//
+Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout.page');
+Route::match(['get','post'],'/checkout/stripe',[CheckoutController::class,'checkout'])->name('checkout');
+Route::get('/checkout/success',[CheckoutController::class,'success'])->name('success');
+Route::get('/checkout/cancel',[CheckoutController::class,'cancel'])->name('cancel');

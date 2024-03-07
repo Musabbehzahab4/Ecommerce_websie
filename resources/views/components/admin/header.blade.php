@@ -23,6 +23,9 @@
             <a class="nav-link active" href="{{ route('product') }}">Product</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" href="{{ route('order') }}">Order Detail</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" href="{{ route('front') }}">Front Site</a>
           </li>
         </ul>

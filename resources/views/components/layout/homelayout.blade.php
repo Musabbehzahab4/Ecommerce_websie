@@ -9,9 +9,9 @@
     <title>Ecommerce</title>
     {{isset($CustomCSS)?$CustomCSS:''}}
 </head>
+<x-admin.header />
 <body style="background: linear-gradient(#141e30, #141e30);">
 
-    <x-admin.header />
 
   {{ $slot }}
 

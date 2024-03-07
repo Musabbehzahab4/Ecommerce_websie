@@ -34,11 +34,6 @@ class HomeController extends Controller
     {
         return view('frontend.testimonial');
     }
-
-    public function checkout()
-    {
-        return view('frontend.checkout');
-    }
     public function thankyou()
     {
         return view('frontend.thankyou');
