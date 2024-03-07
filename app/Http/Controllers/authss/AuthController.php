@@ -24,6 +24,7 @@ class AuthController extends Controller
         $user->name = $request['name'];
         $user->email = $request['email'];
         $user->password = $request['password'];
+        $user->user_type = 1;
         $user->save();
         return view('authss.login');
     }
@@ -37,12 +38,12 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        $user = $request->only('email', 'password');
+        if (Auth::attempt($user)) {
             return redirect()->route('front')->withSuccess('You have Successfully loggedin');
         }
 
-        return redirect("login")->withErrors(['email' => 'Invalid credentials']);
+        return redirect("login")->withErrors(['email' => 'Invalid email or password']);
 
     }
 

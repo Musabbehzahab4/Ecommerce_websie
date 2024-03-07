@@ -4,6 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -21,7 +24,7 @@ class CheckoutController extends Controller
         \Stripe\Stripe::setApiKey('sk_test_51OrZ7BKdCUkn2byaSn1Gdm3DwDgrOn0bL1wizFPQNCfE4m7cniWCflIYCKVijTC9vIT0OM0b39OukYYeRdezWjOe00fjp5T8xG');
 
         $cartItems = \Cart::getContent();
-        // dd($cartItems['price']);
+        dd($cartItems);
 
         $lineItems = [];
 
@@ -54,18 +57,31 @@ class CheckoutController extends Controller
             'cancel_url' => route('cancel', [], true),
         ]);
 
-        $order = new Order;
-        $order->session_id = $session->id;
-        $order->fname = $request['fname'];
-        $order->lname = $request['lname'];
-        $order->address = $request['address'];
-        $order->email = $request['email'];
-        $order->phone_no = $request['phone_no'];
-        $order->country = $request['country'];
-        $order->status = 'unpaid';
-        $order->total_price = $totalPrice;
-        // return $totalPrice;die;
-        $order->save();
+        $user = Auth::id();
+        // return $user;die;
+        // $order = new Order;
+        // $order->session_id = $session->id;
+        // $order->user_id = $user;
+        // $order->fname = $request['fname'];
+        // $order->lname = $request['lname'];
+        // $order->address = $request['address'];
+        // $order->email = $request['email'];
+        // $order->phone_no = $request['phone_no'];
+        // $order->country = $request['country'];
+        // $order->status = 'unpaid';
+        // $order->total_price = $totalPrice;
+        // // return $order;die;
+        // $order->save();
+
+        $orderdetail = new OrderDetail;
+        $orderdetail->user_id = $user;
+        $orderdetail->product_id = $cartItems['id'];
+        // $orderdetail->name = $cartItems['name'];
+        // $orderdetail->price = $cartItems['price'];
+        // $orderdetail->quantity = $cartItems['quantity'];
+        // $orderdetail->image = $cartItems['image'];
+        return $orderdetail;die;
+        $orderdetail->save();
 
 
         return redirect($session->url);
@@ -92,7 +108,9 @@ class CheckoutController extends Controller
 
                     $order->status = 'paid';
                     $order->save();
+                    \Cart::clear();
                     return view('frontend.thankyou');
+
                 }
             }
 
