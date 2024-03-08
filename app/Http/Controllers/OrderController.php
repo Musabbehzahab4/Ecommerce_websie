@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function detail($id)
     {
         $orderdetail = OrderDetail::where('user_id',$id)->get();
-        // return $orderdetail;die;
+       
         return view('admin.orderdetail',compact('orderdetail'));
     }
 }

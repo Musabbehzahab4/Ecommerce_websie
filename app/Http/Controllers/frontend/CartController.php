@@ -9,16 +9,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    // public function cart()
-    // {
-    //     // $product = Product::find($id);
-    //     return view('frontend.cart');
-    // }
     public function cartList()
     {
         if(Auth::check()){
             $cartItems = \Cart::getContent();
-            // dd($cartItems);
+
             return view('frontend.cart', compact('cartItems'));
         }else{
             return view('authss.login');
@@ -55,7 +50,6 @@ class CartController extends Controller
             ]
         );
 
-//    return $request;die;
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
         return redirect()->route('cart.list');
