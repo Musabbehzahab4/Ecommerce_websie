@@ -19,6 +19,7 @@ class CheckoutController extends Controller
     }
     public function checkout(Request $request)
     {
+
         \Stripe\Stripe::setApiKey('sk_test_51OrZ7BKdCUkn2byaSn1Gdm3DwDgrOn0bL1wizFPQNCfE4m7cniWCflIYCKVijTC9vIT0OM0b39OukYYeRdezWjOe00fjp5T8xG');
 
         $cartItems = \Cart::getContent();
@@ -29,15 +30,12 @@ class CheckoutController extends Controller
         foreach ($cartItems as $product) {
             $totalPrice = \Cart::getTotal();
 
-
-
-
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => $product->name,
-                        'images' => $product['attributes']['image'],
+                        // 'images' => $product['attributes']['image'],
                     ],
                     'unit_amount' => $product->price * 100,
                 ],
