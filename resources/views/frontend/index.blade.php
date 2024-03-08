@@ -401,9 +401,9 @@
                             <input type="hidden" value="1" name="quantity">
                             <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
                         </form>
-                        <a href="" class="option2">
+                        {{-- <a href="" class="option2">
                         Buy Now
-                        </a>
+                        </a> --}}
                      </div>
                   </div>
                   <div class="img-box">

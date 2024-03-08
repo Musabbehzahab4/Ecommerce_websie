@@ -15,40 +15,44 @@ class CheckoutController extends Controller
     public function index()
     {
         $cartItems = \Cart::getContent();
-        // return $cartItems;die;
         return view('frontend.checkout', compact('cartItems'));
     }
     public function checkout(Request $request)
     {
-        // return $request;die;
         \Stripe\Stripe::setApiKey('sk_test_51OrZ7BKdCUkn2byaSn1Gdm3DwDgrOn0bL1wizFPQNCfE4m7cniWCflIYCKVijTC9vIT0OM0b39OukYYeRdezWjOe00fjp5T8xG');
 
         $cartItems = \Cart::getContent();
-        dd($cartItems);
 
         $lineItems = [];
-
         $totalPrice = 0;
 
         foreach ($cartItems as $product) {
             $totalPrice = \Cart::getTotal();
 
-            // $productImages = [];
-            // if (!empty($product->image)) {
-            //     $productImages[] = $product->attributes->image;
-            // }
+
+
 
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
                         'name' => $product->name,
-                        // 'images' => $productImages,
+                        'images' => $product['attributes']['image'],
                     ],
                     'unit_amount' => $product->price * 100,
                 ],
                 'quantity' => $product->quantity,
             ];
+
+            $user = Auth::id();
+            $orderdetail = new OrderDetail;
+            $orderdetail->user_id = $user;
+            $orderdetail->product_id = $product['id'];
+            $orderdetail->name = $product['name'];
+            $orderdetail->price = $product['price'];
+            $orderdetail->quantity = $product['quantity'];
+            $orderdetail->image = $product['attributes']['image'];
+            $orderdetail->save();
         }
         $session = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
@@ -58,32 +62,18 @@ class CheckoutController extends Controller
         ]);
 
         $user = Auth::id();
-        // return $user;die;
-        // $order = new Order;
-        // $order->session_id = $session->id;
-        // $order->user_id = $user;
-        // $order->fname = $request['fname'];
-        // $order->lname = $request['lname'];
-        // $order->address = $request['address'];
-        // $order->email = $request['email'];
-        // $order->phone_no = $request['phone_no'];
-        // $order->country = $request['country'];
-        // $order->status = 'unpaid';
-        // $order->total_price = $totalPrice;
-        // // return $order;die;
-        // $order->save();
-
-        $orderdetail = new OrderDetail;
-        $orderdetail->user_id = $user;
-        $orderdetail->product_id = $cartItems['id'];
-        // $orderdetail->name = $cartItems['name'];
-        // $orderdetail->price = $cartItems['price'];
-        // $orderdetail->quantity = $cartItems['quantity'];
-        // $orderdetail->image = $cartItems['image'];
-        return $orderdetail;die;
-        $orderdetail->save();
-
-
+        $order = new Order;
+        $order->session_id = $session->id;
+        $order->user_id = $user;
+        $order->fname = $request['fname'];
+        $order->lname = $request['lname'];
+        $order->address = $request['address'];
+        $order->email = $request['email'];
+        $order->phone_no = $request['phone_no'];
+        $order->country = $request['country'];
+        $order->status = 'unpaid';
+        $order->total_price = $totalPrice;
+        $order->save();
         return redirect($session->url);
     }
 
@@ -94,7 +84,6 @@ class CheckoutController extends Controller
         $sessionId = $request->get('session_id');
         try {
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
-            // dd ($session);
             if (!$session) {
                 throw new NotFoundHttpException;
             } else {
@@ -123,4 +112,5 @@ class CheckoutController extends Controller
     {
 
     }
+
 }

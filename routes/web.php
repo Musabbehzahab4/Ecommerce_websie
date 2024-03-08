@@ -76,6 +76,7 @@ Route::get('/ajaxcall', [ProductController::class, 'ajaxCall'])->name('ajax-call
 
 //=============================OrderController=====================================//
 Route::get('/order',[OrderController::class,'order'])->name('order');
+Route::get('/order/detail/{id}',[OrderController::class,'detail'])->name('detail');
 
 //=================================Homeontroller===================================//
 Route::get('/',[HomeController::class,'index'])->name('front');

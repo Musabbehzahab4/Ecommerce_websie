@@ -13,6 +13,7 @@
                     <th>Country</th>
                     <th>Total Price</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,8 +29,9 @@
                     <td>{{ $value->country }}</td>
                     <td>$ {{ $value->total_price }}</td>
                     <td>{{ $value->status }}</td>
-
-
+                    <td>
+                        <a href="{{ route('detail',['id'=>$value->user_id]) }}" class="btn btn-primary btn-sm">Product Detail</a>
+                    </td>
                 </tr>
                 @endforeach
 

@@ -50,6 +50,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        \Cart::clear();
         return redirect()->route('front')->withSuccess('You have Successfully Logout');
     }
 }
