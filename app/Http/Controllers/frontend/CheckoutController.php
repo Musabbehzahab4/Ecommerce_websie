@@ -108,7 +108,7 @@ class CheckoutController extends Controller
 
     public function cancel()
     {
-
+        throw new NotFoundHttpException();
     }
 
 }
